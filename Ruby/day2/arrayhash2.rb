@@ -1,6 +1,5 @@
 # favorite = "horse"
 
-
 # animal = ["cat", "dog", "horse", "bat", "mule"]
 
 # animal.each do |a| 
@@ -14,6 +13,10 @@
 # end	
 
 
+
+
+
+##**********************************************************************************#
 
 # animal = ["cat", "dog", "horse", "bat", "mule"]
 
@@ -43,6 +46,8 @@
 
 
 
+#**********************************************************************************#
+
 # puts "Give me an animal to hear the sound: "
 # sound = gets.chomp.downcase
 
@@ -71,6 +76,11 @@
 # end	
 
 
+
+
+
+#**********************************************************************************#
+
 # my_hash = {"Name" => "Heather", "Age"=>20, "Hometown"=>"Detroit", "Favorite Food"=>"Calamari"}
 
 # my_hash.each do |k,v|
@@ -87,6 +97,9 @@
 						
 
 
+
+
+#**********************************************************************************#
 
 # #array of numbers
 numbers =[]
