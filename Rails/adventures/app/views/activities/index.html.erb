@@ -1,10 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<style>
+
+  body {
+    color: <%= @color %>;
+  }
+
+</style>
+
+
+
 <h1>Listing Activities</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Index</th>
       <th>Name</th>
       <th>Cost</th>
       <th>Duration</th>
@@ -15,6 +26,7 @@
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
+        <td><%= activity.id  %></td>
         <td><%= activity.name %></td>
         <td><%= activity.cost %></td>
         <td><%= activity.duration %></td>
@@ -28,4 +40,33 @@
 
 <br>
 
-<%= link_to 'New Activity', new_activity_path %>
+
+<p>Color Changer</p>
+<%= link_to "Blue", activities_path(color: "blue"), class: "btn btn-primary"  %>
+
+<%= link_to "Red", activities_path(color: "red"), class: "btn btn-danger"  %>
+
+<%= link_to "Green", activities_path(color: "green"), class: "btn btn-success"  %>
+
+<%= link_to "Purple", activities_path(color: "purple"), class: "btn btn-success"%>
+
+
+<p><%= link_to 'New Activity', new_activity_path %></p>
+
+<% @images.shuffle! %>
+<p><% @images.each do |i| %>
+  <%= image_tag i, class: "image" %>
+ <% end %> </p>
+
+
+
+
+
+
+
+
+
+
+
+
+

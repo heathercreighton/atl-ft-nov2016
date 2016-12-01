@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Index</th>
       <th>Name</th>
       <th>Capitol</th>
       <th>Population</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @states.each do |state| %>
       <tr>
+        <td><%= state.id %></td>
         <td><%= state.name %></td>
         <td><%= state.capitol %></td>
         <td><%= state.population %></td>

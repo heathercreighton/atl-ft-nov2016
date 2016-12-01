@@ -5,12 +5,24 @@ class ActivitiesController < ApplicationController
   # GET /activities.json
   def index
     @activities = Activity.all
+
+    @images = ['adv1.jpg', 'adv2.jpg', 'adv3.jpg', 'adv4.jpg']
+    # @images.shuffle!
+
+    @color = params[:color]
+
+    puts"****************"
+    puts @color
+    puts"****************"
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
   end
+
+  def contact
+  end 
 
   # GET /activities/new
   def new
