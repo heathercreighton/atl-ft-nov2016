@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pet Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @pet.teacher %>
+</p>
+
+<p>
+  <strong>Room no:</strong>
+  <%= @pet.room_no %>
+</p>
+
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= link_to 'Back', pets_path %>

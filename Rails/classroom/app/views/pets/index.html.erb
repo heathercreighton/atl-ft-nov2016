@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Our class Pets</h1>
+
+   
+    <div class='row'>
+      <div class="col-md-4">
+    <% @pets.each do |pet| %>
+      <div class='well'>
+        <strong><%= pet.name %></strong>
+        <ul>
+        <li>Teacher: <%= pet.teacher %></li>
+        <li>Room No: <%= pet.room_no %></li>
+        <%= link_to 'Show', pet, class: 'btn btn-primary' %>
+        <%= link_to 'Edit', edit_pet_path(pet), class: 'btn btn-warning' %>
+        <%= link_to 'Destroy', pet, class: 'btn btn-danger',method: :delete, data: { confirm: 'Are you sure?' } %>
+      </ul>  
+     </div>
+    <% end %> 
+    </div>
+   </div>
+       
+<%= link_to 'New Pet', new_pet_path %>
