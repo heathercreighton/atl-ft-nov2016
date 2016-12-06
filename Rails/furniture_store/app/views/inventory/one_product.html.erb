@@ -1,0 +1,12 @@
+
+<!-- This view gives our user a look at the individual products based on the index number from the parameters. -->
+
+<h1><%= @product.name %></h1>
+<p><%= number_to_currency @product.price %></p>
+<p><%= link_to @product.category, category_path(category: @product.category) %></p>
+
+
+<p>
+	<%= link_to "Back to All Products", all_path %>
+</p>
+ 

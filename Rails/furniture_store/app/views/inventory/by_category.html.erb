@@ -1,0 +1,10 @@
+<h1>All Products in our <%= params[:category] %> category </h1>
+
+
+<!-- List all the products in each category with a link to view each individual product sending the index number as teh parameter. -->
+	<ul>
+	<% @products.each do |product| %>
+			<li> 
+			<%= link_to product.name, one_path(id: product.id) %> </li>
+	<% end %>
+	</ul>

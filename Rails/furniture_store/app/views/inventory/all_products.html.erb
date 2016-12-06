@@ -1,0 +1,27 @@
+<!-- Gives the viewer look at all our products  -->
+
+
+<h1> Here are the product all the products we carry
+</h1>
+<ul>
+<% @products.each do |product| %>
+	<li><%= product.name %>,
+			<%= product.price %>,
+			<%= product.category %>
+
+			<!--sends the user to our 'one_product' page with the parameter (params) set to the index number of that item.  -->
+			<%= link_to "View Product", one_path(id: product.id) %>
+				</li>
+	<% end %>
+</ul>	
+
+<p>See Products By Category:</p>
+
+
+<!-- Allows the user to view the database by category and send them to the 'by_category' page with the parameter category set to the category we want to view. -->
+<%= link_to 'Furniture', category_path(category: 'furniture') %>
+<%= link_to 'Appliances', category_path(category: 'appliance') %>
+<%= link_to 'Miscellaneous', category_path(category: 'misc') %>
+
+
+
