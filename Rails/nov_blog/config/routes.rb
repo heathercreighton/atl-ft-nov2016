@@ -1,18 +1,9 @@
 Rails.application.routes.draw do
-  get 'all_states' => 'country#all_states'
+  devise_for :users
+  resources :comments
+  resources :blog_posts
 
-  get 'top5pop' =>'country#top_five_pop'
-
-  get 'top5area'=>'country#top_five_area'
-
-  resources :states
-  get 'all' =>'inventory#all_products'
-
-  get 'one' =>'inventory#one_product'
-
-  get 'category' =>'inventory#by_category'
-
-  resources :products
+  root 'blog_posts#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

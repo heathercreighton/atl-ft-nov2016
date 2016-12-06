@@ -1,0 +1,7 @@
+<h1>List of All States</h1>
+<ul>
+	<% @states.each do |s| %>
+		<li>Name: <%= s.name %>, Capital: <%= s.capital %>,
+		Population: <% s. population %>, Area in Sq. miles: <%= s.area %></li>
+		<% end %>
+</ul>		

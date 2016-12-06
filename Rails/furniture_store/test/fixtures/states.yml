@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  capital: MyString
+  population: 1
+  area: 1
+
+two:
+  name: MyString
+  capital: MyString
+  population: 1
+  area: 1

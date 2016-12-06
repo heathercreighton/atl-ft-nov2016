@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog_post.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog_post.user.username %>
+</p>
+
+<p>
+  <strong>Blog entry:</strong>
+  <%= @blog_post.blog_entry %>
+</p>
+
+<%= link_to 'Edit Post', edit_blog_post_path(@blog_post) %>
+ |
+<%= link_to 'Back', blog_posts_path %>
+
+
+
+<div class="container">
+<%= render 'comments/form' %> 
+
+<!-- Brings comments over throught blog_post because of 'model' relationship -->
+
+
+
+	<div class = "row" >
+		<% @blog_post.comments.each do |comment| %>
+			<!-- <div class = "col-md-4"> -->
+	      <div class = "well" style="background-color: rgb(139, 161, 98); border-color: black;">
+
+						<p> <%= comment.user.username%> said... </p>
+						<p> <%= comment.comment_entry %> </p>
+						--------------------------------------
+				</div>
+			<!-- </div>	 -->
+		<% end%>
+	</div>
+</div>
