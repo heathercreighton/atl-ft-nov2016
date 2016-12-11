@@ -1,0 +1,31 @@
+<h1>@<%= @user.username %>'s Profile &amp; Tweets </h1>
+
+<p><%= @user.name%></p>
+<p><%= @user.location%></p>
+<p><%= @user.bio%></p>
+
+
+<p>
+<% if current_user.id != @user.id %>
+	<% if current_user.following.include?(@user.id) %>
+		<%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
+	<% else	%>
+		<%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+
+	<% end %>
+<% end %> 
+
+<% if current_user.id == @user.id %>
+	<%= form_for @new_tweet, url: {action: "epi_tweet"} do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Create Tweet" %>
+<% end %>
+<% end %>	
+
+<% @user.tweets.each do	|tweet| %>
+	<div>
+	<p><%= tweet.message %></p>
+	<p>Created: <%= tweet.created_at.strftime("%c") %></p>
+</div>
+<% end %>

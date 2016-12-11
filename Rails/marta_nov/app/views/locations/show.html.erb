@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+
+<h2>You Are Currently Standing At...</h2>
+
+<p>
+	<%= @location.my_location %>
+</p>
+
+<h2> The Closest Buses Are...</h2>
+<!-- If there are not buses, we should let them know with a message -->
+<%if @bus_count == 0 %>
+	<p>...not really that close.  Try a taxi or Uber</p>
+<% end %>
+
+<!-- If there are buses in the area, we store them in an array and print them to the screen  -->
+<% @nearby_buses.each_with_index do |bus,index| %>
+	<p>
+		<strong>Route: </strong><%= bus["ROUTE"] %><br />
+		<strong>Vehicle: </strong><%= bus["VEHICLE"] %><br />
+		<strong>Next Stop: </strong><%= bus["TIMEPOINT"] %><br />
+	</p>
+
+
+<!-- Javascript for Google Maps -->
+<script>
+$(document).ready(function (){
+
+function initialize() {
+      var myLatLng = new google.maps.LatLng(<%= @location.latitude %>, <%= @location.longitude %>);
+
+      var busLatLng = new google.maps.LatLng(<%= bus["LATITUDE"] %>, <%= bus["LONGITUDE"] %>);
+
+      var mapOptions = {
+      	center: myLatLng,
+      	zoom: 13
+
+      };
+
+      var map = new google.maps.Map(document.getElementById("map-canvas<%= index %>"), mapOptions);
+
+      var marker = new google.maps.Marker({
+      		position: busLatLng,
+      		map: map,
+      		animation: google.maps.Animation.DROP,
+      		title: "Nearby Bus!"
+
+
+      });
+
+
+      var contentString = "Here's a bus!";
+
+
+      var infoWindow = new google.maps.InfoWindow({content: contentString});
+
+      
+
+      google.maps.event.addListener(marker, 'click',function(){ infoWindow.open(map,marker);
+      });
+
+}
+
+google.maps.event.addDomListener(window, 'load',
+	initialize);
+});
+
+</script>
+
+<div class="bus-map" id="map-canvas<%= index %>"></div>
+<% end %>	
+
+
+
+<!-- End of JS for Google Maps -->
+
+
+
+
+
+<!-- Allow user to modify their location -->
+
+<%= link_to "Actually, I'm standing at..." , edit_location_path(@location) %> 

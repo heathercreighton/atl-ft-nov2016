@@ -1,0 +1,10 @@
+<h1>Here are all the users tweeting</h1>
+
+
+<div>
+	<% @all_users.each do |user| %>
+		<p>@<%= link_to user.username, show_user_path(id: user.id) %></p>
+	<% end %>
+
+</div>
+  
