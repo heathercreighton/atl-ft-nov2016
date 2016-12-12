@@ -21,9 +21,6 @@ before_filter :authenticate_user!, except: [:show_user]
   	@tweet = Tweet.where(user_id: (params[:id]))
     
     @new_tweet = Tweet.new
-
-
-
     
 
   end
@@ -32,17 +29,16 @@ before_filter :authenticate_user!, except: [:show_user]
   	@user = User.find(params[:id].to_i)
   	current_user.following.push(params[:id].to_i)
   	current_user.save
+  
   end
 
   def unfollow
 		@user = User.find(params[:id].to_i)
 
-		  	# current_user.following.push(params[:follow_id].to_i)
-		  	# current_user.save
 
 		  	current_user.following.delete(params[:id].to_i)
 		  	current_user.save
-		  	#redirect_to tweets_path
+		  	
 		  
 
   end
@@ -90,8 +86,22 @@ before_filter :authenticate_user!, except: [:show_user]
     end
   end
 
+  def tag_tweets
+    @tag = Tag.find(params[:id])
 
-
-
+  end 
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

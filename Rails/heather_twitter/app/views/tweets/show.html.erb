@@ -2,7 +2,13 @@
 
 <p>
   <strong>Message:</strong>
-  <%= @tweet.message %>
+  
+        <% if @tweet.message.include?('#') %>
+
+          <%= @tweet.message.html_safe %></td>
+        <% else %>
+          <%= "#{@tweet.message}" %></td>
+        <% end %>
 </p>
 
 <p>

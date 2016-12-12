@@ -1,3 +1,26 @@
+<!-- Adding our JS script to change the button color -->
+<script>
+$(document).ready(function(){
+	$("#unfollow_btn").hover(function(){
+		$(this).removeClass("btn-primary");
+		$(this).addClass("btn-danger");
+		$(this).html("Unfollow");
+	}, function(){
+		$(this).html("Following");
+		$(this).removeClass("btn-danger");
+		$(this).addClass("btn-primary");
+	});
+
+})
+
+</script>
+
+
+
+
+
+
+
 <h1>@<%= @user.username %>'s Profile &amp; Tweets </h1>
 <p><%= image_tag @user.avatar.url, class: "mini-pic" %></p>
 <p><%= @user.name%></p>
@@ -8,12 +31,18 @@
 <p>
 <% if current_user.id != @user.id %>
 	<% if current_user.following.include?(@user.id) %>
-		<%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
+		<%= link_to "Following", unfollow_path(id: @user.id), class: "btn btn-primary",  id: "unfollow_btn" %>
+
 	<% else	%>
 		<%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
 
 	<% end %>
 <% end %> 
+
+
+
+
+
 
 <% if current_user.id == @user.id %>
 	<%= form_for @new_tweet, url: {action: "epi_tweet"} do |f| %>
@@ -25,7 +54,18 @@
 
 <% @user.tweets.each do	|tweet| %>
 	<div>
-	<p><%= tweet.message %></p>
+	<% if tweet.message.include?('#') %>
+
+          <%= tweet.message.html_safe %></td>
+        <% else %>
+          <%= "#{tweet.message}" %></td>
+        <% end %>
 	<p>Created: <%= tweet.created_at.strftime("%c") %></p>
 </div>
 <% end %>
+
+
+
+
+
+

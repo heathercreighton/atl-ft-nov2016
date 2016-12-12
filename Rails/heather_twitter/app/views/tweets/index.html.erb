@@ -17,7 +17,15 @@
     
 
       <tr>
-        <td><%= image_tag tweet.user.avatar.url, class: "mini-pic" %> <%= tweet.message %></td>
+        <td><%= image_tag tweet.user.avatar.url, class: "mini-pic" %> 
+
+
+        <% if tweet.message.include?('#') %>
+
+          <%= tweet.message.html_safe %></td>
+        <% else %>
+          <%= "#{tweet.message}" %></td>
+        <% end %>
         <td><%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %></td>
         <td>Created: <%= tweet.created_at.strftime("%c") %></td>
         <td><%= link_to 'Show', tweet %></td>
