@@ -1,0 +1,33 @@
+<% @users.each do |user| %>
+	<div class="col-md-4">
+		<div class="well">
+			<div class="row">
+				<div class="col-md-6">
+					<%= image_tag user.avatar.url, class: "mini-pic" %>
+				</div>
+				<div class="col-md-6">
+					<% if user.id != current_user.id %>
+						<p>
+							<% if current_user.following.include?(user.id) %>
+								<%= link_to "Following", unfollow_path(id: user.id), class: "btn btn-primary unfollow-btn" %>
+							<% else %>
+								<%= link_to "Follow", now_following_path(id: user.id), class: "btn btn-primary" %>
+							<% end %>
+						</p>
+					<% end %>
+				</div>
+			</div>
+			<h3><%= link_to "#{user.name}", show_user_path(id: user.id) %></h3>
+			<p><%= link_to "@#{user.username}", show_user_path(id: user.id) %> 
+				<% if user.following.include?(current_user.id) %> 
+					<span class="grey-text">FOLLOWS YOU</span> 
+				<% end %>
+			</p>
+			<p>
+				<%= user.bio %>
+			</p>
+
+		</div>
+	</div>	
+
+<% end %>

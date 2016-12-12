@@ -5,6 +5,7 @@ class EpicenterController < ApplicationController
 before_filter :authenticate_user!, except: [:show_user]
 	
   def feed
+    @new_tweet = Tweet.new
   	@following_tweets = []
 
   	Tweet.all.each do |tweet|
@@ -58,12 +59,39 @@ before_filter :authenticate_user!, except: [:show_user]
     
      @tweet = Tweet.new
 
-#our parameters are received as an array of hashes, so we have to dig down into the layers to get our data. 
+#our parameters are received as an array of hashes, so we have to dig down into the layers #tweets_path to get our data. 
     @tweet.message = "#{params[:tweet][:message]}"
     @tweet.user_id = "#{params[:tweet][:user_id].to_i}"
     @tweet.save
+    redirect_to root_path
 
 
 
   end  
+
+  def following
+
+    @users = []
+
+    User.all.each do |user|
+      if current_user.following.include?(user.id)
+        @users.push(user)
+      end
+    end
+  end
+
+  def followers
+    @users = []
+
+    User.all.each do |user|
+      if user.following.include?(current_user.id)
+        @users.push(user)
+      end
+    end
+  end
+
+
+
+
+
 end

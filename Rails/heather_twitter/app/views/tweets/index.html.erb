@@ -13,17 +13,24 @@
 
   <tbody>
     <% @tweets.each do |tweet| %>
+    <div class="row">
+    
+
       <tr>
-        <td><%= tweet.message %></td>
+        <td><%= image_tag tweet.user.avatar.url, class: "mini-pic" %> <%= tweet.message %></td>
         <td><%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %></td>
+        <td>Created: <%= tweet.created_at.strftime("%c") %></td>
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+     </div> 
+
     <% end %>
   </tbody>
+
 </table>
 
 <br>
 
-<%= link_to 'New Tweet', new_tweet_path %>
+<%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-success' %>

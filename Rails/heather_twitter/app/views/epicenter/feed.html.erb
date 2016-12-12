@@ -8,8 +8,15 @@
 <div>
 	<% @following_tweets.each do |tweet| %>
 	<div>	
-		<p><%= tweet.message %></p>
-		<p>@<%= tweet.user.username %></p>
+		<p><%= image_tag tweet.user.avatar.url, class: "mini-pic" %>, <%= tweet.message %></p>
+		<p>@<%= tweet.user.username %>, Created: <%= tweet.created_at.strftime("%c") %></p>
 	</div>
 <% end %>
 </div>		
+
+
+	<%= form_for @new_tweet, url: {action: "epi_tweet"} do |f| %>
+	  <%= f.text_field :message %>
+	  <%= f.hidden_field :user_id, value: current_user.id %>
+	  <%= f.submit "Create Tweet" %>
+	<% end %>

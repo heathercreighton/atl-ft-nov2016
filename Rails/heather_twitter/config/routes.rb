@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'unfollow' =>'epicenter#unfollow'
 
   get 'all_users' =>'epicenter#show_all_users'
+  get 'followers' => 'epicenter#following'
 
   post 'epicenter/epi_tweet'
 
