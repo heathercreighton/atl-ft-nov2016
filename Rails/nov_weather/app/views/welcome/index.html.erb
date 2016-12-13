@@ -1,0 +1,56 @@
+
+<div class = "row">
+  <div class = "col-md-6 col-md-offset-1">
+    <div class = "well">
+      <h1>Look up your Local Forecast!</h1>
+      <p>What's the weather like in your city?</p>
+          <div>
+          	<%= form_tag index_path do %>
+          		<%= text_field_tag :city, nil, placeholder: "City Name", presence: true %><br />
+          		<%= select_tag :state, options_for_select(@states), :prompt => "Please select" %><br />
+          		<%= submit_tag "Check Weather" %>
+          	<% end %>	
+          </div>	
+    </div>
+  </div>    
+</div>
+
+
+
+<!-- Our response from wunderground's API -->
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="well">
+
+<!-- Bring in the instance variable from our controller to display on our index page. -->
+<!-- Check to make sure @location is not empty or nil and  that the API did not return an error -->
+<% if @location != nil && @location != "" && (@error == "" || @error == nil) %>
+      <h1>Forecast for <%= @location %></h1>
+
+      <div class="row">
+        <div class="col-md-7">
+	  <p><em>What's the weather like?</em></p>
+          <p>
+	    Temperature is: <%= @temp_f %>° / <%= @temp_c %>° 
+	  </p>
+	  <p>
+	    Feels like: <%= @real_feel_f %>°
+    	  </p>
+        </div>
+        <div class="col-md-5">
+	  <p>
+	    <%= @weather_words %> <%= image_tag @weather_icon %>
+	  </p>
+	  <p>
+	    <%= link_to "Full Forecast", @forecast_link, target: "_blank" %>
+	  </p>
+        </div>
+      </div>
+
+     <% else %>
+     
+     <p>Error: Please enter a valid request. <%= @error %> </p> 
+<% end %>
+    </div>
+  </div>
+</div>

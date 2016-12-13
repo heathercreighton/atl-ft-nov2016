@@ -1,0 +1,29 @@
+<h1 style="text-align: center"> Here is the weather forecast for <%= @location %></h1>
+
+
+<div class = "row">
+  <div class = "col-md-6 col-md-offset-3">
+    <div class = "well">
+      <h1>Welcome To <%= @location %>!</h1>
+      <div class = "row">
+        <div class = "col-md-7">
+          <p><em>What's the weather like?</em></p>
+          <p>
+              Temperature is: <%= @temp_f %>° / <%= @temp_c %>° C 
+          </p>
+          <p>
+              Feels like: <%= @real_feel %>° F
+          </p>
+        </div>    
+        <div class = "col-md-5">
+            <p>
+            <%= @weather_words%> <%= image_tag @weather_icon%> 
+            </p>
+            <p>
+            <%=link_to "Full Forecast", @forecast_link, target: "_blank" %>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
