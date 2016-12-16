@@ -34,7 +34,7 @@
 							  <p>
 							  <%= form_tag add_to_cart_path do %>
 							    <%= hidden_field_tag :product_id, product.id %>
-							    <%= number_field_tag :quantity, 1, min: 1, placeholder: "How many?", presence: true %>
+							    <%= number_field_tag :quantity, 1, min: 1 %>
 							    
 							    
 							    <%= submit_tag "Add to Cart", class: "btn btn-primary" %>

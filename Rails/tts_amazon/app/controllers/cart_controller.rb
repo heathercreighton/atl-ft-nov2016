@@ -23,28 +23,39 @@ class CartController < ApplicationController
 
   def checkout
 
- @line_items = LineItem.all
-  @order = Order.create(user_id: current_user.id, subtotal: 0)
+     @line_items = LineItem.all
+      @order = Order.create(user_id: current_user.id, subtotal: 0)
 
-  @line_items.each do |line_item|
-    @order.order_items[line_item.product_id] = line_item.quantity
-    @order.subtotal += line_item.line_item_total
-  end
+      @line_items.each do |line_item|
+        @order.order_items[line_item.product_id] = line_item.quantity
+        @order.subtotal += line_item.line_item_total
+      end
 
-  @order.sales_tax = @order.subtotal * 0.07
-  @order.grand_total = @order.subtotal + @order.sales_tax
-  @order.save
+      @order.sales_tax = @order.subtotal * 0.07
+      @order.grand_total = @order.subtotal + @order.sales_tax
+      @order.save
 
-  @line_items.each do |line_item|
-    line_item.product.quantity -= line_item.quantity
-    line_item.product.save
-  end
+      @line_items.each do |line_item|
+        line_item.product.quantity -= line_item.quantity
+        line_item.product.save
+      end
 
-  LineItem.destroy_all
-
-
-
+      LineItem.destroy_all
 
 
   end
+
+  def edit_line_item
+    LineItem.find(params[:id]).update(quantity: params[:quantity])
+    redirect_to :back
+  end
+
+  def delete_line_item
+    LineItem.find(params[:id]).destroy
+    redirect_to :back
+  end
+
+
+
+
 end

@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'user_list' =>'administration#user_list'
 
+  get 'add_admin' => 'administration#add_admin'
+
+  get 'remove_admin' => 'administration#remove_admin'
+
+ post 'edit_line_item' => 'cart#edit_line_item'
+
+  get 'delete_line_item' => 'cart#delete_line_item'
   post 'add_to_cart' => 'cart#add_to_cart'
 
   get 'view_order' => 'cart#view_order'

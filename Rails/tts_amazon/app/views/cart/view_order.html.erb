@@ -1,16 +1,56 @@
 <h1>My Cart</h1>
 
-<h2>My Cart</h2>
+<% @line_items.each do |line_item| %>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							<%= image_tag line_item.product.image.url(:thumb) %>
+						</p>
 
-<div>
-  <% @line_items.each do |line_item| %>
-    <li><%= line_item.product.name %></li>
-    <li><%= number_to_currency line_item.product.price %></li>
-    <li>Qty: <%= line_item.quantity %></li>
-    <li>Subtotal: <%= line_item.line_item_total %></li>
-  <% end %>
-</div>
 
-<div>
-  <%= link_to "Proceed to Checkout?", checkout_path, class: "btn btn-success" %>
-</div>
+					</div>
+					<div class="col-md-6">
+						<p><%= line_item.product.name %></p>
+						<p><%= number_to_currency line_item.product.price %>/ea.</p>
+						<p>Qty: <%= line_item.quantity %></p>
+						<p>Subtotal: <%= number_to_currency line_item.line_item_total %></p>
+						<p>
+							<button id="edit_btn" class="btn btn-warning">
+							 Edit
+							</button>
+							<div id="edit_form" class="invisible">
+								<%= form_tag edit_line_item_path do %>
+									<%= number_field_tag :quantity, line_item.quantity, placeholder: "Qty" %>
+									<%= hidden_field_tag :id, line_item.id %>
+									<%= submit_tag "Change", class: "btn btn-warning" %>
+								<% end %>
+							</div>
+						</p>
+						<p><%= link_to "Remove from Cart", delete_line_item_path(id: line_item.id) %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<% if @line_items.length > 0 %>
+	<div>
+		<%= link_to "Proceed to Checkout", checkout_path, class: "btn btn-success" %>
+	</div>
+<% else %>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well center-it">
+				<h4>
+					<p>Your Cart Is Empty </p>
+					<p>Back to <%= link_to 'Main Page', root_path %></p>
+				</h4>
+				
+			</div>
+		</div>
+	</div>
+<% end %>

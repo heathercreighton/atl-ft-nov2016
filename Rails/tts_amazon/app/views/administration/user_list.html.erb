@@ -1,0 +1,17 @@
+<h1>Our Current Users</h1>
+
+
+<div>
+	
+	<% @users.each do |user| %>
+			<% if user.role == 'admin' %>
+			<p>
+				<%= user.email %> <%= link_to "Remove Admin Abilities?", remove_admin_path(id: user.id), class: "btn btn-danger" %>
+			</p>
+		<% else %>
+				<p>
+				<%= user.email %> <%= link_to "Add Admin Abilities?", add_admin_path(id: user.id), class: "btn btn-success" %>
+			</p>
+		<% end %>
+	<% end %>	
+</div>
