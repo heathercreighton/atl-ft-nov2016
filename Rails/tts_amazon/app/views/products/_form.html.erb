@@ -34,7 +34,7 @@
   
   <div class="form-group">
     <p>Please choose a category below:</p>
-    <%= f.select(:category_id, @categories.collect {|c| [c.name, c.id]} ) %>
+    <%= f.select(:category_id, @categories.collect {|c| [c.name, c.id]}, {include_blank: "Please select a category"} ) %>
     </div>
    <div class="form-group" >
     <strong>Upload Product Image:</strong>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Top5Nov</title>
+	  <%= stylesheet_link_tag    'application', media: 'all' %>
+	  <%= javascript_include_tag 'application' %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+
+		
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">JP's Top Jams</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><%= link_to "Top 5", root_path %></li>
+		  <li><%= link_to "Artists", artists_path %></li>
+		  <li><%= link_to "Songs", songs_path %></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="inner cover">
+            <%= yield %>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+              <p><%= image_tag "musicicon.png", id: "icon-pic"  %>Heather's Top Jams. &copy; 2017</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

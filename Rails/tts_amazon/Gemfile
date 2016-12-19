@@ -15,6 +15,12 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'cancancan'
 gem 'pry-rails'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'figaro'
+
+
+
 gem 'better_errors', group: :development
 
 # Use Uglifier as compressor for JavaScript assets

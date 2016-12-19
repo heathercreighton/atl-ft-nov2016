@@ -1,0 +1,20 @@
+<div class="row">
+  <h2> My Top 5 </h2>
+    <% @songs.each do |song| %>
+      <div class="well well-lg">
+        <h2><%= song.name %></h2>
+	<h3>by <%= song.artist.name %> </h3>
+	<p><% "#{song.rating}".to_i.times do |rank| %>
+	  <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+
+        <% (10 - "#{song.rating}".to_i).times do |rank| %>
+	  <span class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+
+
+
+        </p>	             
+     </div>
+  <% end %>
+</div>

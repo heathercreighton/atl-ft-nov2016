@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'delete_line_item' => 'cart#delete_line_item'
   post 'add_to_cart' => 'cart#add_to_cart'
 
+  post 'order_complete' =>'cart#order_complete'
+
   get 'view_order' => 'cart#view_order'
 
   get 'checkout' => 'cart#checkout'
