@@ -1,0 +1,22 @@
+<div class="row">
+  <h2> My Top 5 Artist</h2>
+    <% @artists.each do |artist| %>
+      <div class="well well-lg">
+      	<h1 id="orb"><%= @count %></h1>
+        <h2><%= link_to artist.name, artist %></h2>
+	
+	<p><% "#{artist.rating}".to_i.times do |rank| %>
+	  <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+
+        <% (10 - "#{artist.rating}".to_i).times do |rank| %>
+	  <span class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+
+
+
+        </p>	             
+     </div>
+     <% @count +=1 %>
+  <% end %>
+</div>

@@ -17,8 +17,16 @@
 
 <h3>
  
-  <%= @song.artist.name %>
-</h3>
+  <p><%= link_to @song.artist.name, @song.artist %></p></h3>
+  <% if @song.video != nil %>
+  	<p><%= link_to 'See the Video', @song.video.html_safe, target: '_blank' %></p>
+  <% end %>	
 
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+
+<p><%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %></p>
+
+
+<p><%= link_to 'Add Song', new_song_path, class: 'btn btn-primary'  %>
+  
+</p>

@@ -1,17 +1,28 @@
 <div class="row">
-  <h2> My Top 5 </h2>
+  <h2> My Top 5 Songs</h2>
+
+
     <% @songs.each do |song| %>
       <div class="well well-lg">
-        <h2><%= song.name %></h2>
+
+
+      	<h1 id="cookie"><%= @count %></h1>
+        <h2><%= link_to song.name, song %></h2>
+
+        <% if song.video != nil %>
+  	<p><%= link_to 'See the Video', song.video.html_safe, target: '_blank' %></p>
+  <% end %>	
+
 	<h3>by <%= song.artist.name %> </h3>
-	<p><% "#{song.rating}".to_i.times do |rank| %>
+	<p><% song.rating.to_i.times do |rank| %>
 	  <span class="glyphicon glyphicon-star"></span>
         <% end %>
 
-        <% (10 - "#{song.rating}".to_i).times do |rank| %>
+        <% (10 - song.rating.to_i).times do |rank| %>
 	  <span class="glyphicon glyphicon-star-empty"></span>
+	  	
         <% end %>
-
+			<% @count += 1 %>
 
 
         </p>	             

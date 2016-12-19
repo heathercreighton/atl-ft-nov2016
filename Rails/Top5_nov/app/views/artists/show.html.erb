@@ -5,15 +5,25 @@
     <div class="well">
       <h1><%= @artist.name %></h1>
 
-      
-<% if @artist.avatar != nil %>
+
+				<% if @artist.avatar != nil %>
           <%= image_tag @artist.avatar.url(:thumb) %>
         <% end %>
-	<% @artist.songs.each do |song| %>
+
+
+				<% @artist.songs.each do |song| %>
 
 		
-	  <h3><%= link_to song.name, song %></a></h3>
-	<% end %>
+	  				<h3><%= link_to song.name, song %></a></h3>
+				<% end %>
     </div>
   </div>
+  <%= link_to "Edit Artist", edit_artist_path(@artist) %> 
 </div>
+
+
+
+
+<p><%= link_to 'Add Artist', new_artist_path, class: 'btn btn-primary'  %>
+  
+</p>
