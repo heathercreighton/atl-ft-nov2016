@@ -12,6 +12,12 @@
     <% @artists.each do |artist| %>
      <div class="col-md-6">
       <div class="well">
+
+
+        <% if artist.avatar != nil %>
+          <%= image_tag artist.avatar.url(:thumb) %>
+        <% end %>
+
        <h2><%= link_to artist.name, artist %></h2>
         
          <h4><%= link_to edit_artist_path(artist) do %>

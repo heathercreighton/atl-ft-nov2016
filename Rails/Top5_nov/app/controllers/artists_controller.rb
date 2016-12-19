@@ -57,7 +57,7 @@ class ArtistsController < ApplicationController
   def destroy
     @artist.songs.destroy_all
     @artist.destroy
-    
+
     respond_to do |format|
       format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
       format.json { head :no_content }
@@ -72,6 +72,6 @@ class ArtistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
-      params.require(:artist).permit(:name)
+      params.require(:artist).permit(:name, :avatar)
     end
 end
